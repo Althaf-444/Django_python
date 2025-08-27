@@ -3,16 +3,15 @@
 <html lang="en">
 <head>
     <title>contect</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <h1>Connect form</h1>
-    <form action="{% url 'contect'%}" method="post">
+    <form action="{% url 'contect' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
      <button type="submit">submit</button>
     </form>
-    <form action="{% url 'home'%}" method = "get">
-        <button type="submit">BACK</button>
-    </form>
+   <button><a href={% url 'home' %}>BACK</a></button>
 </body>
 </html>
