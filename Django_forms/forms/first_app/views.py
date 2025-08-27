@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect
-from form import Contect_form
+from .form import Contect_form
 
 # Create your views here.
 def contect(request):
