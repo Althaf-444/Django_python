@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h1>Connect form</h1>
+    <h1>Contect form</h1>
     <form action="{% url 'contect' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
