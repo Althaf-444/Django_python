@@ -5,6 +5,14 @@
     <title>contect</title>
 </head>
 <body>
-    
+    <h1>Connect form</h1>
+    <form action="{% url 'contect'%}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+     <button type="submit">submit</button>
+    </form>
+    <form action="{% url 'home'%}" method = "get">
+        <button type="submit">BACK</button>
+    </form>
 </body>
 </html>
