@@ -5,9 +5,9 @@ class RegisterForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
     password_confirm = forms.CharField(widget=forms.PasswordInput , label="confirm password")
 
-    class Mete:
+    class Meta:
         model = User
-        fields = ['username','password','password_confirm']
+        fields = ['username','password']
 
     def clean(self):
         cleaned_data = super().clean()  

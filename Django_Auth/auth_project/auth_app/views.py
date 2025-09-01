@@ -13,24 +13,44 @@ def register_viwe(request):
       if form.is_valid():
           user_name = form.cleaned_data.get("username")
           password = form.cleaned_data.get("password")
-          user = User.objects.create_user(usename=user_name,password= password)
+          user = User.objects.create_user(username=user_name,password= password)
           login(request , user)
           return redirect('home')
-      else:
+    else:
           form = RegisterForm()
-          return render(request , 'accounts/register.html',{'form':form})
+          return render(request , 'accounts/registration.html',{'form':form})
 
 
 def login_viwe(request):
+    error_mgs = None 
     if request.method == 'POST':
         user_name = request.POST.get("username")
         password = request.POST.get("password")
         user = authenticate(request, username = user_name , password = password  )
-        
+        if user is not None :
+            login(request , user)
+            next_url =  request.POST.get('next') or request.GET.get('next') or 'home'
+            return redirect(next_url)
+        else:
+            error_mgs = 'Invalid credentials'
+    return render(request , 'accounts/login.html' , {'error' : error_mgs })        
 
 def logout_viwe(request):
-    pass
+    if request.method == "POST":
+        logout(request)
+        return redirect('login')
+    else:
+        return redirect('home')
+    
 
 @login_required
 def home(request):
-    pass
+    return render(request,'auth1_app/home.html')
+
+class protectedViwe(LoginRequiredMixin):
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'
+
+    def get(self,request):
+        return render(request , 'registration/protected.html')
+    
