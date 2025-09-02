@@ -2,8 +2,9 @@ from django.shortcuts import render , redirect
 from .forms import ProductForm
 from .models import Product
 # Create your views here.
+
 def home(request):
-    return render(request , 'app/home.html')
+    return render(request ,'App/home.html')
 
 def create_view(request):
     form = ProductForm()
@@ -12,11 +13,11 @@ def create_view(request):
         if form.is_valid():
             form.save()
             return redirect('product_list')
-    return render(request , 'app/product_form.html',{'form' : form})
+    return render(request , 'App/product_form.html',{'form' : form})
 
 def read_view(request):
     prodect = Product.objects.all()
-    return render(request , 'app/product_list.html',{'product':prodect})
+    return render(request , 'App/product_list.html',{'product':prodect})
 
 def update_view(request , product_id):
     product = Product.objects.get(product_id = product_id)
@@ -26,12 +27,12 @@ def update_view(request , product_id):
         if form.is_valid():
            form.save()
            return redirect('product_list')
-    return render(request , 'app/product_form.html',{'form' : form})
+    return render(request , 'App/product_form.html',{'form' : form})
 
 def delete_view(request , product_id):
     product = Product.objects.get(product_id = product_id)
     if request.method == 'POST':
         product.delete()
         return redirect('product_list')
-    return render(request , 'app/product_confirm_delete.html',{'product':product})
+    return render(request , 'App/product_confirm_delete.html',{'product':product})
 
