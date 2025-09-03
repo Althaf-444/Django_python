@@ -12,27 +12,28 @@ def create_view(request):
         form = ProductForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('product_list')
+            return redirect('list')
     return render(request , 'App/product_form.html',{'form' : form})
 
 def read_view(request):
-    prodect = Product.objects.all()
-    return render(request , 'App/product_list.html',{'product':prodect})
+    products = Product.objects.all()
+    return render(request , 'App/product_list.html',{'products':products})
+
 
 def update_view(request , product_id):
     product = Product.objects.get(product_id = product_id)
     form = ProductForm(instance=product)
     if request.method == 'POST':
-        form = Product(request.POST,instance=product)
+        form = ProductForm(request.POST,instance=product)
         if form.is_valid():
            form.save()
-           return redirect('product_list')
+           return redirect('list')
     return render(request , 'App/product_form.html',{'form' : form})
 
 def delete_view(request , product_id):
     product = Product.objects.get(product_id = product_id)
     if request.method == 'POST':
         product.delete()
-        return redirect('product_list')
+        return redirect('list')
     return render(request , 'App/product_confirm_delete.html',{'product':product})
 

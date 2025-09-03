@@ -1,0 +1,16 @@
+{% extends 'App/layout.html' %}
+
+{% block title %}
+  Delete Confirmation
+{% endblock %}
+{% block content %}
+<div class="text-center">
+<form action="{% url "delete" product.product_id %}" method="post">
+    {% csrf_token %}
+    <p> Are you sure, you want to Delete!</p>
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="{% url "list" %}" class="btn btn-secondary">Cencel</a>
+</form>
+
+</div>
+{% endblock content %}

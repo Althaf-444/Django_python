@@ -1,8 +1,13 @@
 {% extends "App/layout.html" %}
+
 {% block title %}HOME{% endblock title %}
+
 {% block content %}
-      <div class="container">
-        this is home page
+
+      <div class="container mt-5 text-center">
+       <h1>HOME</h1>
+      <a href="{% url "list" %}" class="btn btn-primary">View Products</a>
+      <a class="btn btn-primary" href="{% url 'create' %}">Add Product</a>
       </div>
 {% endblock %}
 
